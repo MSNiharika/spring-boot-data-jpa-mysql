@@ -25,12 +25,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService);
     }
 
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/quickbooks").hasRole(ADMIN)
                 .antMatchers("/user").hasAnyRole(ADMIN, USER)
                 .antMatchers("/all").permitAll()
-                .anyRequest().authenticated();
+                .and().formLogin();
     }
 
     @Bean
