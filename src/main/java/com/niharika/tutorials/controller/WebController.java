@@ -10,6 +10,8 @@ import me.legrange.haveibeenpwned.PwnedHash;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,9 +41,9 @@ public class WebController {
     @GetMapping("/")
     public ModelAndView showHomepage(Principal principal){
         if (principal == null){
-            return new ModelAndView("home");
+            return new ModelAndView("Login");
         } else {
-            return new ModelAndView("home", "user", principal);
+            return new ModelAndView("Login", "user", principal);
         }
     }
 
@@ -133,6 +135,7 @@ public class WebController {
     @RequestMapping("/user/home")
     public ModelAndView showUserHome(Principal principal){
         return new ModelAndView("userhome.html", "user", principal);
+        //return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

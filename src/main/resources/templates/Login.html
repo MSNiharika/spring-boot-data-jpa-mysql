@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="../assets/style.css">
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<form method="POST" action="/user/registration" class="container">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5">
+					<h2 class="text-left">Login</h2>
+					<p class="text-left">
+						Dont have an account?<a href="#"> Create Account</a>
+					</p>
+
+					<input type="text" class="form-control" name="username"
+						placeholder="User name" required /> 
+					<input type="password" class="form-control" name="password" 
+					placeholder="password" required /> <input type="checkbox">
+					<small>Remember	me?</small>
+					<p class="text-right">
+						<a href="#">Forgot Password</a>
+					</p>
+					<input type="submit" value="Login" class="btn btn-info">
+				</div>
+			</div>
+
+		</div>
+	</form>
+</body>
+</html>
