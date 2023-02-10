@@ -30,6 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()  // Defines which URLs can be accessed without being logged in.
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/quickbooks/products").permitAll()
                 .antMatchers("/user/registration").permitAll()
                 .antMatchers("/user/registered").permitAll()
                 .antMatchers("/login*").permitAll()
