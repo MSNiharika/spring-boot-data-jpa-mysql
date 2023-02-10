@@ -41,9 +41,9 @@ public class WebController {
     @GetMapping("/")
     public ModelAndView showHomepage(Principal principal){
         if (principal == null){
-            return new ModelAndView("Login");
+            return new ModelAndView("home");
         } else {
-            return new ModelAndView("Login", "user", principal);
+            return new ModelAndView("home", "user", principal);
         }
     }
 
