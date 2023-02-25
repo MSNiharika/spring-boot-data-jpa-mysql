@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:8082")
 @RestController
 @RequestMapping("/quickbooks")
 public class ProductController {
@@ -19,14 +18,11 @@ public class ProductController {
     @Autowired
     ProductService productService;
     @GetMapping("/products")
-    public ResponseEntity<List<Product>> getAllProducts(@RequestParam(required = false) String name) {
+    public ResponseEntity<List<Product>> getAllProducts() {
         try {
             List<Product> products = new ArrayList<>();
 
-            if (name == null)
-                productService.getAllProducts();
-            else
-                productService.getByProductNameContaining(name).forEach(products::add);
+            products = productService.getAllProducts();
 
             if (products.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -39,15 +35,15 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable("id") long id) {
-        Optional<Product> productData = productService.getProductNameById(id);
+        public ResponseEntity<Product> getProductById(@PathVariable("id") long id) {
+            Optional<Product> productData = productService.getProductNameById(id);
 
-        if (productData.isPresent()) {
-            return new ResponseEntity<>(productData.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            if (productData.isPresent()) {
+                return new ResponseEntity<>(productData.get(), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         }
-    }
 
     @PostMapping("/products")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
