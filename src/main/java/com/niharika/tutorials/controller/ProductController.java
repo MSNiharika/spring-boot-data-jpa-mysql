@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:8082")
+@CrossOrigin(origins = {"http://localhost:3000","http://localhost:8083"})
 @RestController
 @RequestMapping("/quickbooks")
 public class ProductController {
@@ -19,19 +19,11 @@ public class ProductController {
     @Autowired
     ProductService productService;
     @GetMapping("/products")
-    public ResponseEntity<List<Product>> getAllProducts(@RequestParam(required = false) String name) {
+    public ResponseEntity<List<Product>> getAllProducts() {
         try {
             List<Product> products = new ArrayList<>();
 
-            if (name == null)
-                productService.getAllProducts();
-            else
-                productService.getByProductNameContaining(name).forEach(products::add);
-
-            if (products.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-
+            productService.getAllProducts().forEach(products::add);
             return new ResponseEntity<>(products, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
