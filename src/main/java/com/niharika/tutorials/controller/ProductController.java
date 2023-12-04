@@ -94,6 +94,9 @@ public class ProductController {
         try {
             List<Product> product = productService.findByIsAvailable(true);
 
+
+
+
             if (product.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
